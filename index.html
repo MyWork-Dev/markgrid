@@ -1,0 +1,1519 @@
+cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarkGrid × Wow! Momo · Growth Intelligence Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D4001F;
+    --red-deep: #A8001A;
+    --red-light: rgba(212,0,31,0.08);
+    --red-mid: rgba(212,0,31,0.14);
+    --cream: #FAF8F4;
+    --cream-2: #F3F0EB;
+    --cream-3: #EDE9E2;
+    --ink: #1A1410;
+    --ink-2: #2C261E;
+    --ink-muted: rgba(26,20,16,0.5);
+    --ink-dim: rgba(26,20,16,0.12);
+    --ink-faint: rgba(26,20,16,0.06);
+    --yellow: #C98B00;
+    --display: 'Playfair Display', Georgia, serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* PAPER TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.028'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: multiply;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(250,248,244,0.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--ink-dim);
+    padding: 0 48px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+  .nav-logo span { color: var(--red); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--red);
+    transition: width 0.25s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--ink); }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { width: 100%; }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px; height: 1.5px;
+    background: var(--ink);
+    transition: all 0.3s;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 62px; left: 0; right: 0; bottom: 0;
+    background: var(--cream);
+    z-index: 999;
+    padding: 48px 40px;
+    flex-direction: column;
+    gap: 28px;
+    border-top: 1px solid var(--ink-dim);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--red); }
+
+  /* CONTAINER */
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* SECTIONS */
+  section { padding: 128px 0; position: relative; }
+  section:nth-child(even) { background: var(--cream-2); }
+  section:nth-child(odd) { background: var(--cream); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 62px;
+    overflow: hidden;
+    background: var(--cream);
+    position: relative;
+  }
+
+  /* Decorative editorial lines */
+  #hero::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--ink-dim) 30%, var(--ink-dim) 70%, transparent);
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 72px;
+  }
+
+  .hero-byline {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-byline-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .hero-byline-name {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+
+  .hero-doc-meta {
+    text-align: right;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    line-height: 2;
+  }
+
+  .hero-headline {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(60px, 9.5vw, 108px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+    color: var(--ink);
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .hero-headline .outline {
+    -webkit-text-stroke: 1.5px var(--ink);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--ink-muted);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 52px;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 44px;
+    transition: background 0.2s, transform 0.2s;
+    margin-bottom: 72px;
+  }
+
+  .hero-cta:hover {
+    background: var(--red-deep);
+    transform: translateY(-2px);
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--ink-dim);
+    border-bottom: 1px solid var(--ink-dim);
+  }
+
+  .marquee-row {
+    display: flex;
+    gap: 0;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--ink-dim);
+  }
+  .marquee-row:last-child { border-bottom: none; }
+
+  .marquee-inner {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: scroll-left 32s linear infinite;
+  }
+
+  .marquee-row:nth-child(2) .marquee-inner {
+    animation: scroll-right 30s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .marquee-item {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-shrink: 0;
+  }
+
+  .marquee-item::after {
+    content: '●';
+    color: var(--red);
+    font-size: 6px;
+  }
+
+  .marquee-item.highlight { color: var(--yellow); }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 20px; height: 1.5px;
+    background: var(--red);
+  }
+
+  /* SECTION HEADINGS */
+  .section-heading {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(38px, 4.8vw, 62px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+
+  .section-heading em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .section-heading .outline {
+    -webkit-text-stroke: 1.5px var(--ink);
+    color: transparent;
+  }
+
+  .section-body {
+    font-size: 17px;
+    color: var(--ink-muted);
+    max-width: 660px;
+    line-height: 1.8;
+    margin-bottom: 60px;
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+  }
+
+  .card {
+    background: var(--cream);
+    padding: 40px 34px;
+    transition: background 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .card:hover { background: var(--cream-3); transform: translateY(-2px); }
+  .card:hover::before { transform: scaleX(1); }
+
+  .card-number {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+
+  .card-icon { font-size: 26px; margin-bottom: 16px; display: block; }
+
+  .card-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  /* 2-COL FEATURE BLOCKS */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+  }
+
+  .feature-block {
+    background: var(--cream);
+    padding: 52px 44px;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .feature-block:hover { background: var(--cream-3); }
+
+  .feature-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+
+  .feature-title {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 18px;
+    line-height: 1.15;
+  }
+
+  .feature-body {
+    font-size: 15px;
+    color: var(--ink-muted);
+    line-height: 1.8;
+  }
+
+  /* INTENT CLUSTERS */
+  .intent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .intent-cluster {
+    border: 1px solid var(--ink-dim);
+    padding: 40px;
+    background: var(--cream-2);
+    transition: border-color 0.2s;
+  }
+
+  .intent-cluster:hover { border-color: var(--red); }
+
+  .intent-cluster-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+
+  .intent-cluster-title {
+    font-family: var(--display);
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  .intent-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-top: 1px solid var(--ink-dim);
+    align-items: flex-start;
+  }
+
+  .intent-q {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+
+  .intent-text {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
+  /* CALLOUT BOX */
+  .callout {
+    border-left: 3px solid var(--red);
+    background: var(--red-light);
+    padding: 32px 40px;
+    margin-top: 44px;
+  }
+
+  .callout p {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  /* PHASE CARDS */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+  }
+
+  .phase-card {
+    background: var(--cream);
+    padding: 44px 38px;
+    transition: background 0.2s, transform 0.15s;
+    position: relative;
+  }
+
+  .phase-card:hover { background: var(--cream-3); transform: translateY(-2px); }
+
+  .phase-num {
+    font-family: var(--display);
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--red);
+    opacity: 0.1;
+    line-height: 1;
+    margin-bottom: -20px;
+  }
+
+  .phase-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+
+  .phase-title {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  .phase-body {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+  }
+
+  .stat-block {
+    background: var(--cream);
+    padding: 52px 36px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .stat-block:hover { background: var(--cream-3); }
+
+  .stat-number {
+    font-family: var(--display);
+    font-size: 60px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 14px;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    max-width: 150px;
+    margin: 0 auto;
+  }
+
+  /* INCLUDED GRID */
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+  }
+
+  .included-card {
+    background: var(--cream);
+    padding: 36px 32px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .included-card:hover { background: var(--cream-3); transform: translateY(-2px); }
+
+  .included-check {
+    font-size: 16px;
+    color: var(--red);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .included-title {
+    font-family: var(--display);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .included-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  /* EXCLUSIVITY BOX */
+  .exclusivity-box {
+    background: var(--red);
+    padding: 32px 44px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .exclusivity-box .ex-icon { font-size: 28px; flex-shrink: 0; }
+
+  .exclusivity-box p {
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.55;
+    color: #fff;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 28px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--ink-dim);
+    align-items: flex-start;
+  }
+
+  .contact-key {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    min-width: 72px;
+    padding-top: 3px;
+  }
+
+  .contact-val { font-size: 15px; color: var(--ink); }
+  .contact-val a { color: var(--ink); text-decoration: none; transition: color 0.2s; }
+  .contact-val a:hover { color: var(--red); }
+
+  .meta-chips { display: flex; flex-direction: column; gap: 10px; }
+
+  .meta-chip {
+    border: 1px solid var(--ink-dim);
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s;
+    background: var(--cream-2);
+  }
+
+  .meta-chip:hover { border-color: var(--red); }
+
+  .meta-chip-key {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .meta-chip-val {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+
+  /* CLOSING HEADLINE */
+  .closing-headline {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(44px, 6.5vw, 82px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+    color: var(--ink);
+  }
+
+  .closing-headline em { color: var(--red); font-style: italic; }
+  .closing-headline .outline {
+    -webkit-text-stroke: 1.5px var(--ink);
+    color: transparent;
+  }
+
+  /* AUDIT CTA BOX */
+  .audit-box {
+    border: 1.5px solid var(--red);
+    padding: 52px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  .audit-box::before {
+    content: 'FREE AUDIT';
+    position: absolute;
+    top: 50%; right: -20px;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: var(--display);
+    font-size: 60px;
+    font-weight: 900;
+    color: var(--red);
+    opacity: 0.05;
+    pointer-events: none;
+    letter-spacing: 0.1em;
+  }
+
+  .audit-box-title {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 18px;
+    line-height: 1.2;
+  }
+
+  .audit-box-body {
+    font-size: 15px;
+    color: var(--ink-muted);
+    line-height: 1.8;
+    margin-bottom: 28px;
+    max-width: 600px;
+  }
+
+  .audit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .audit-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .audit-list li::before {
+    content: '→';
+    color: var(--red);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .audit-cta {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 44px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .audit-cta:hover {
+    background: var(--red-deep);
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink-2);
+    border-top: 1px solid var(--ink-dim);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-brand {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(250,248,244,0.4);
+  }
+
+  .footer-links { display: flex; gap: 28px; }
+
+  .footer-links a {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(250,248,244,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: rgba(250,248,244,0.85); }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--ink-dim);
+    margin: 56px 0;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ENGAGEMENT TERMS GRID */
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+    margin-bottom: 40px;
+  }
+
+  .term-block {
+    background: var(--cream);
+    padding: 40px 44px;
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .term-block:hover { background: var(--cream-3); }
+
+  .term-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .term-value {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .term-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-top: 4px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .container { padding: 0 24px; }
+    section { padding: 80px 0; }
+    nav { padding: 0 24px; }
+    footer { padding: 28px 24px; }
+
+    .hero-meta { flex-direction: column; gap: 24px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .intent-grid { grid-template-columns: 1fr; }
+    .phase-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .included-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+    .terms-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .audit-box { padding: 32px 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Mark<span>Grid</span> × Wow! Momo</div>
+  <ul class="nav-links">
+    <li><a href="#situation">Situation</a></li>
+    <li><a href="#problems">Problems</a></li>
+    <li><a href="#engine">Engine</a></li>
+    <li><a href="#surfaces">Surfaces</a></li>
+    <li><a href="#execution">Execution</a></li>
+    <li><a href="#metrics">Metrics</a></li>
+    <li><a href="#commercials">Engagement</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#situation" onclick="closeMobile()">01 · Situation</a>
+  <a href="#problems" onclick="closeMobile()">02 · Problems</a>
+  <a href="#engine" onclick="closeMobile()">03 · Engine</a>
+  <a href="#surfaces" onclick="closeMobile()">04 · Surfaces</a>
+  <a href="#execution" onclick="closeMobile()">05 · Execution</a>
+  <a href="#metrics" onclick="closeMobile()">06 · Metrics</a>
+  <a href="#commercials" onclick="closeMobile()">07 · Engagement</a>
+  <a href="#contact" onclick="closeMobile()">08 · Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-meta reveal">
+      <div style="display:flex; gap: 64px;">
+        <div class="hero-byline">
+          <span class="hero-byline-label">Presented by</span>
+          <span class="hero-byline-name">MarkGrid</span>
+        </div>
+        <div class="hero-byline">
+          <span class="hero-byline-label">Prepared for</span>
+          <span class="hero-byline-name">Wow! Momo</span>
+        </div>
+      </div>
+      <div class="hero-doc-meta">
+        Growth Intelligence Proposal · v1<br>
+        Confidential · 2026<br>
+        01 / 08
+      </div>
+    </div>
+
+    <div class="hero-headline reveal reveal-delay-1">
+      Growth<br>
+      Intelligence<br>
+      <em>for India's</em><br>
+      <span class="outline">Boldest</span> QSR.
+    </div>
+
+    <p class="hero-sub reveal reveal-delay-2">A strategic intelligence partnership designed to make Wow! Momo the brand that AI recommends, communities trust, creators amplify, and every competitor fears — across momos, chicken, FMCG, and beyond.</p>
+
+    <a href="#situation" class="hero-cta reveal reveal-delay-3">Enter the Proposal ↓</a>
+  </div>
+
+  <div class="marquee-wrap">
+    <div class="marquee-row">
+      <div class="marquee-inner">
+        <span class="marquee-item">Best momos in India?</span>
+        <span class="marquee-item highlight">Top QSR for youth in 2026?</span>
+        <span class="marquee-item">Best quick bite near me?</span>
+        <span class="marquee-item highlight">Which frozen momo brand is best?</span>
+        <span class="marquee-item">Best food brand for late night cravings?</span>
+        <span class="marquee-item highlight">AI can't find you yet</span>
+        <span class="marquee-item">Best momos in India?</span>
+        <span class="marquee-item highlight">Top QSR for youth in 2026?</span>
+        <span class="marquee-item">Best quick bite near me?</span>
+        <span class="marquee-item highlight">Which frozen momo brand is best?</span>
+        <span class="marquee-item">Best food brand for late night cravings?</span>
+        <span class="marquee-item highlight">AI can't find you yet</span>
+      </div>
+    </div>
+    <div class="marquee-row">
+      <div class="marquee-inner">
+        <span class="marquee-item">Best chicken snack in India?</span>
+        <span class="marquee-item highlight">#EndOfDebate — but is AI watching?</span>
+        <span class="marquee-item">What to order from Zomato right now?</span>
+        <span class="marquee-item highlight">Most loved FMCG snack brand?</span>
+        <span class="marquee-item">Best kulfi brand in tier-2 cities?</span>
+        <span class="marquee-item highlight">Competitors are already tracking this</span>
+        <span class="marquee-item">Best chicken snack in India?</span>
+        <span class="marquee-item highlight">#EndOfDebate — but is AI watching?</span>
+        <span class="marquee-item">What to order from Zomato right now?</span>
+        <span class="marquee-item highlight">Most loved FMCG snack brand?</span>
+        <span class="marquee-item">Best kulfi brand in tier-2 cities?</span>
+        <span class="marquee-item highlight">Competitors are already tracking this</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 01: SITUATION -->
+<section id="situation">
+  <div class="container">
+    <div class="section-label reveal">01 · The Situation</div>
+    <h2 class="section-heading reveal reveal-delay-1">
+      Wow! Momo is no longer<br>
+      <em>just a momo brand.</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2">850+ stores. 90+ cities. A new FMCG vertical crossing ₹100 crore ARR with 100% YoY growth. Five sub-brands competing simultaneously. Aggressive tier-2 and tier-3 expansion underway. At that scale, the bottleneck is no longer distribution or product. It is <strong style="color:var(--ink)">narrative control</strong> — knowing what is being said about you, where, by whom, and whether the right AI, the right creator, and the right community is working in your favour or against you.</p>
+
+    <div class="cards-grid reveal reveal-delay-3">
+      <div class="card">
+        <span class="card-icon">🏪</span>
+        <div class="card-number">Scale</div>
+        <div class="card-title">850+ Stores · 90+ Cities</div>
+        <div class="card-desc">India's most geographically spread QSR brand — and still growing aggressively into tier-2 markets.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">📦</span>
+        <div class="card-number">FMCG Vertical</div>
+        <div class="card-title">₹100 Cr ARR · 100% YoY</div>
+        <div class="card-desc">The frozen foods play is no longer an experiment. It is a full-blown category bet competing on quick commerce shelves.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <div class="card-number">Five Sub-Brands</div>
+        <div class="card-title">Five battles. One brand.</div>
+        <div class="card-desc">Momos. Chicken. Chinese QSR. Kulfi. Frozen FMCG. Each is a separate discovery and recommendation battle being fought simultaneously.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02: PROBLEMS -->
+<section id="problems">
+  <div class="container">
+    <div class="section-label reveal">02 · Three Blind Spots</div>
+    <h2 class="section-heading reveal reveal-delay-1">
+      Losing ground<br>
+      <em>without knowing it.</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2">The marketing complexity of running a multi-brand QSR ecosystem has outgrown your current operational tooling. Here are the three places where it is happening right now.</p>
+
+    <div class="feature-grid reveal reveal-delay-3">
+      <div class="feature-block">
+        <div class="feature-label">Problem 01 · AI Recommendations</div>
+        <div class="feature-title">ChatGPT is recommending your competitors</div>
+        <p class="feature-body">When someone in Lucknow or Indore types "best momos near me" into ChatGPT or Perplexity, a short list comes back. That list shapes purchase decisions before Google is even opened. Right now, there is no tool inside Wow! Momo's stack tracking whether the brand appears in those responses — or whether Bao Bao or any frozen food competitor is named instead.</p>
+      </div>
+      <div class="feature-block">
+        <div class="feature-label">Problem 02 · Creator Compliance</div>
+        <div class="feature-title">Your creator programme is scaling faster than your review capacity</div>
+        <p class="feature-body">#EndOfDebate showed exactly where Wow! Momo's instinct is sharpest — creator-first, participation-driven. But a food brand running creator campaigns across Delhi, Mumbai, Bengaluru, and Kolkata simultaneously is producing hundreds of pieces of content weekly. Manual review is not a process. It is a hope. One unverifiable health claim. One competitor product. One contradictory promo. None of it caught until it's a problem.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid reveal reveal-delay-4" style="margin-top:1px;">
+      <div class="feature-block">
+        <div class="feature-label">Problem 03 · Community Sentiment</div>
+        <div class="feature-title">Real consumer opinion is forming where you cannot see it</div>
+        <p class="feature-body">Reddit threads, Discord food communities, Quora questions, and hyperlocal WhatsApp groups are where real Wow! Momo sentiment forms — long before it becomes a review or a media story. Right now, there is a visible gap between strong brand awareness and mixed sentiment around quality consistency and pricing across city tiers. That gap will widen with tier-2 expansion if it is not monitored in near-real time.</p>
+      </div>
+      <div class="feature-block" style="background: var(--red-light); border-left: 3px solid var(--red);">
+        <div class="feature-label" style="color:var(--yellow);">The Stakes</div>
+        <div class="feature-title">The brand that measures first will own it</div>
+        <p class="feature-body">MarkGrid's platform tracks AI recommendation share weekly across ChatGPT, Gemini, Perplexity, and Claude. It shows exactly which prompts Wow! Momo is absent from, how competitors are scoring, and what content changes would move the brand's position within 30 days. This is the metric that no food brand in India is measuring yet. Not one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03: ENGINE -->
+<section id="engine">
+  <div class="container">
+    <div class="section-label reveal">03 · The Engine</div>
+    <h2 class="section-heading reveal reveal-delay-1">
+      Not a tool.<br>
+      <em>An operating system.</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2">MarkGrid combines AI answer shaping, community intelligence, creator compliance automation, neuro-marketing scoring, e-commerce tracking, and live measurement into one platform — so Wow! Momo's marketing team makes decisions with data, not instinct alone.</p>
+
+    <div class="cards-grid reveal reveal-delay-3">
+      <div class="card">
+        <span class="card-icon">🤖</span>
+        <div class="card-number">Module 01</div>
+        <div class="card-title">Model Share</div>
+        <div class="card-desc">Weekly tracking of Wow! Momo's AI recommendation share across ChatGPT, Gemini, Perplexity, and Claude across all five sub-brand categories.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎥</span>
+        <div class="card-number">Module 02</div>
+        <div class="card-title">Creator Audit</div>
+        <div class="card-desc">Real-time review of every creator video across 8 brand-safety categories the moment it arrives — before it goes live. 300 creators managed like 30.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">📡</span>
+        <div class="card-number">Module 03</div>
+        <div class="card-title">Community Signals</div>
+        <div class="card-desc">Continuous monitoring of Reddit, Discord, Quora, and niche food forums for brand mentions, sentiment shifts, and emerging demand signals.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧠</span>
+        <div class="card-number">Module 04</div>
+        <div class="card-title">Neuro Marketing</div>
+        <div class="card-desc">AI models trained on neuroscience research score creatives before media spend — so you know if a campaign will land before the budget is committed.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🛒</span>
+        <div class="card-number">Module 05</div>
+        <div class="card-title">E-Commerce Intel</div>
+        <div class="card-desc">SKU rank tracking across Blinkit, Swiggy Instamart, and Zepto. Campaign attribution. Review analysis for messaging intelligence on every FMCG SKU.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">💬</span>
+        <div class="card-number">Module 06</div>
+        <div class="card-title">Ask MarkGrid AI</div>
+        <div class="card-desc">"Why did engagement drop on Wow! Chicken content this week?" Ask it. Get an answer backed by live data, not a blank box and a 2-week agency brief.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04: SURFACES -->
+<section id="surfaces">
+  <div class="container">
+    <div class="section-label reveal">04 · Discovery Surfaces</div>
+    <h2 class="section-heading reveal reveal-delay-1">
+      The questions, cravings,<br>
+      <em>and communities that matter.</em>
+    </h2>
+
+    <div class="intent-grid reveal reveal-delay-2">
+      <div class="intent-cluster">
+        <div class="intent-cluster-label">Intent Cluster · 01</div>
+        <div class="intent-cluster-title">QSR & Indulgence Queries</div>
+        <div class="intent-item"><span class="intent-q">Q.01</span><span class="intent-text">Best momos in India right now?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.02</span><span class="intent-text">Top quick service restaurant for youth in India?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.03</span><span class="intent-text">Which QSR brand feels most Indian and fun?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.04</span><span class="intent-text">Best snack for late-night college food runs?</span></div>
+      </div>
+      <div class="intent-cluster">
+        <div class="intent-cluster-label">Intent Cluster · 02</div>
+        <div class="intent-cluster-title">FMCG & Frozen Discovery</div>
+        <div class="intent-item"><span class="intent-q">Q.05</span><span class="intent-text">Best frozen momo brand on Blinkit or Zepto?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.06</span><span class="intent-text">Which frozen snack brand is growing fastest in India?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.07</span><span class="intent-text">Best ready-to-cook momo pack for home?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.08</span><span class="intent-text">What frozen food brand does Gen Z actually love?</span></div>
+      </div>
+      <div class="intent-cluster">
+        <div class="intent-cluster-label">Intent Cluster · 03</div>
+        <div class="intent-cluster-title">Creator & Culture Moments</div>
+        <div class="intent-item"><span class="intent-q">Q.09</span><span class="intent-text">What food brands run the best creator campaigns in India?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.10</span><span class="intent-text">Which QSR brand has the most viral social presence?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.11</span><span class="intent-text">Best food brand for food influencer collaborations?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.12</span><span class="intent-text">Which restaurant chain is dominating reels in 2026?</span></div>
+      </div>
+      <div class="intent-cluster">
+        <div class="intent-cluster-label">Intent Cluster · 04</div>
+        <div class="intent-cluster-title">Tier-2 & Expansion Markets</div>
+        <div class="intent-item"><span class="intent-q">Q.13</span><span class="intent-text">Best food chains that have arrived in Lucknow or Indore?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.14</span><span class="intent-text">Which QSR is expanding fastest to smaller cities in India?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.15</span><span class="intent-text">Affordable yet branded food options in tier-2 cities?</span></div>
+        <div class="intent-item"><span class="intent-q">Q.16</span><span class="intent-text">Best mall food court option outside metro cities?</span></div>
+      </div>
+    </div>
+
+    <div class="callout reveal reveal-delay-3">
+      <p>Right now, Wow! Momo has no visibility into whether it appears in any of these AI-generated answers — and no tool to change that. MarkGrid fixes that, starting week one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05: EXECUTION -->
+<section id="execution">
+  <div class="container">
+    <div class="section-label reveal">05 · Execution</div>
+    <h2 class="section-heading reveal reveal-delay-1">
+      A 6-month program to<br>
+      <em>seed, shape, and amplify.</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2">Three phases. Zero guesswork. Every action connected back to signal-building, discovery activation, or amplification — with live measurement from day one.</p>
+
+    <div class="phase-grid reveal reveal-delay-3">
+      <div class="phase-card">
+        <div class="phase-num">01</div>
+        <div class="phase-label">Phase 01 · Months 1–2</div>
+        <div class="phase-title">Signal Build</div>
+        <p class="phase-body">Baseline AI recommendation audit across all five sub-brand categories. Creator compliance infrastructure live. Community listening activated across Reddit, Discord, and Quora. Entity and citation signals structured for LLM answer surfaces. Neuro-marketing scoring run on top 5 active creatives.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">02</div>
+        <div class="phase-label">Phase 02 · Months 3–4</div>
+        <div class="phase-title">Discovery Activation</div>
+        <p class="phase-body">Stress-test key AI prompts and recommendation surfaces. Creator pipeline running at scale with automated compliance. E-commerce rank tracking live across Blinkit, Zepto, Swiggy Instamart. Community sentiment loop feeding content strategy. Weekly recommendation share reports for every sub-brand.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">03</div>
+        <div class="phase-label">Phase 03 · Months 5–6</div>
+        <div class="phase-title">Amplification Layer</div>
+        <p class="phase-body">Push strongest hooks through PR, creator participation, and community prompts. Tier-2 market signal expansion — localised community monitoring for new city entries. Repeatable content systems that keep Wow! Momo in AI recommendations after the first wave. Full attribution dashboard handed to the marketing team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06: METRICS -->
+<section id="metrics">
+  <div class="container">
+    <div class="section-label reveal">06 · Measurement</div>
+    <h2 class="section-heading reveal reveal-delay-1">
+      Trackable.<br>
+      <em>Attributable.</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2">Outcomes across distinct measurement layers, instrumented from day one. A live dashboard across AI answer share, creator compliance, community momentum, and e-commerce rank movement — not a monthly PDF nobody reads.</p>
+
+    <div class="stats-grid reveal reveal-delay-3">
+      <div class="stat-block">
+        <div class="stat-number">5/5</div>
+        <div class="stat-label">Priority AI surfaces tracking Wow! Momo across all sub-brand categories</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">6mo</div>
+        <div class="stat-label">Discovery advantage once signals consolidate across AI, communities and quick commerce</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Creator compliance categories reviewed automatically before every video goes live</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">AI-ready articles, brand citations, and community signals indexed and live by Month 2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 07: ENGAGEMENT TERMS (no pricing) -->
+<section id="commercials">
+  <div class="container">
+    <div class="section-label reveal">07 · Engagement Terms</div>
+    <h2 class="section-heading reveal reveal-delay-1">
+      Everything in.<br>
+      <em>Nothing hidden.</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2">A single retainer covers the entire intelligence infrastructure — AI answer shaping, creator compliance, community monitoring, neuro-marketing scoring, e-commerce tracking, and live measurement. No surprise line-items. Scope discussed in the discovery call.</p>
+
+    <div class="terms-grid reveal reveal-delay-2">
+      <div class="term-block">
+        <div class="term-label">Engagement Duration</div>
+        <div class="term-value">6 Months</div>
+        <div class="term-desc">Fixed scope, phased delivery across signal build, activation, and amplification.</div>
+      </div>
+      <div class="term-block">
+        <div class="term-label">Billing Cycle</div>
+        <div class="term-value">Monthly</div>
+        <div class="term-desc">Retainer-based. Transparent scope. No hidden line-items or variable costs.</div>
+      </div>
+      <div class="term-block">
+        <div class="term-label">Setup</div>
+        <div class="term-value">Included</div>
+        <div class="term-desc">Full platform onboarding, baseline audit, and dashboard configuration from day one.</div>
+      </div>
+      <div class="term-block">
+        <div class="term-label">Category Exclusivity</div>
+        <div class="term-value">Locked</div>
+        <div class="term-desc">No direct QSR or FMCG competitor can be onboarded until the contract closes.</div>
+      </div>
+    </div>
+
+    <div class="exclusivity-box reveal reveal-delay-3">
+      <span class="ex-icon">🔒</span>
+      <p>Wow! Momo locks the momo, Chinese QSR, and premium frozen snack category for the full engagement. No direct QSR or FMCG competitor can be onboarded by MarkGrid until the contract closes.</p>
+    </div>
+
+    <div class="included-grid reveal reveal-delay-4">
+      <div class="included-card">
+        <span class="included-check">✓</span>
+        <div class="included-title">Model Share Tracking</div>
+        <p class="included-desc">Weekly AI recommendation monitoring across ChatGPT, Gemini, Perplexity, and Claude for all five Wow! Momo sub-brand categories.</p>
+      </div>
+      <div class="included-card">
+        <span class="included-check">✓</span>
+        <div class="included-title">Creator Real-Time Audit</div>
+        <p class="included-desc">Automated compliance review of every submitted creator video across 8 brand-safety categories before any content goes live.</p>
+      </div>
+      <div class="included-card">
+        <span class="included-check">✓</span>
+        <div class="included-title">Community Signals</div>
+        <p class="included-desc">Continuous listening across Reddit, Discord, Quora, and food forums — surfacing sentiment shifts and demand signals before they become headlines.</p>
+      </div>
+      <div class="included-card">
+        <span class="included-check">✓</span>
+        <div class="included-title">Neuro-Marketing Scoring</div>
+        <p class="included-desc">AI-powered creative scoring run against neuroscience models before media spend — so Wow! Momo knows if a campaign will land before committing the budget.</p>
+      </div>
+      <div class="included-card">
+        <span class="included-check">✓</span>
+        <div class="included-title">E-Commerce Intelligence</div>
+        <p class="included-desc">SKU rank tracking and campaign attribution across Blinkit, Swiggy Instamart, and Zepto — with review analysis for FMCG messaging intelligence.</p>
+      </div>
+      <div class="included-card">
+        <span class="included-check">✓</span>
+        <div class="included-title">Live Measurement Dashboard</div>
+        <p class="included-desc">Weekly tracking across AI mentions, community participation, creator compliance rates, e-commerce rank shifts, and recommendation share movement.</p>
+      </div>
+    </div>
+
+    <div class="audit-box reveal reveal-delay-4">
+      <div class="audit-box-title">Start with a free audit — 24 hours, no meeting required.</div>
+      <p class="audit-box-body">Rather than a full platform pitch, MarkGrid delivers a free intelligence audit within 24 hours. If it comes back clean, Wow! Momo leaves with data it did not have before. If it surfaces gaps — which at this scale, it almost certainly will — the next conversation practically writes itself.</p>
+      <ul class="audit-list">
+        <li>A Model Share audit for Wow! Momo across its top 3 QSR competitors across ChatGPT, Gemini, Perplexity, and Claude</li>
+        <li>A Neuro-Marketing score on the last 3 paid creatives from any active Wow! Momo campaign</li>
+        <li>A Creator Compliance check on the last 5 videos submitted from any active creator campaign</li>
+      </ul>
+      <a href="#contact" class="audit-cta">Request the Free Audit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 08: CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label reveal">08 · Direct Line</div>
+    <div class="contact-grid">
+      <div>
+        <div class="closing-headline reveal">
+          Wow! Momo<br>
+          <em>already owns</em><br>
+          the <span class="outline">hunger.</span>
+        </div>
+        <p style="font-size:16px; color:var(--ink-muted); line-height:1.8; margin-bottom:36px;" class="reveal reveal-delay-1">The next step is to make that hunger discoverable everywhere: in AI answers, in community conversations, in creator loops, in quick commerce shelves, and in the moments where India's youth choose what to eat next. The brand is already there. Now the intelligence layer has to match it.</p>
+        <a href="mailto:hello@markgrid.ai" class="audit-cta reveal reveal-delay-2">Start the program →</a>
+      </div>
+      <div>
+        <div class="contact-detail reveal reveal-delay-2">
+          <div class="contact-row">
+            <span class="contact-key">Email</span>
+            <span class="contact-val"><a href="mailto:hello@markgrid.ai">hello@markgrid.ai</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">Phone</span>
+            <span class="contact-val"><a href="tel:+919625855555">+91 96258 55555</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">Studio</span>
+            <span class="contact-val">Markgrid · India</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">Web</span>
+            <span class="contact-val"><a href="https://markgrid.ai" target="_blank">markgrid.ai ↗</a></span>
+          </div>
+        </div>
+        <div class="meta-chips reveal reveal-delay-3">
+          <div class="meta-chip">
+            <span class="meta-chip-key">Engagement</span>
+            <span class="meta-chip-val">6 Months · Fixed Scope</span>
+          </div>
+          <div class="meta-chip">
+            <span class="meta-chip-key">Confidentiality</span>
+            <span class="meta-chip-val">NDA-Bound · Zero Leak</span>
+          </div>
+          <div class="meta-chip">
+            <span class="meta-chip-key">Exclusivity</span>
+            <span class="meta-chip-val">Category-Locked</span>
+          </div>
+          <div class="meta-chip">
+            <span class="meta-chip-key">Start Window</span>
+            <span class="meta-chip-val">Within 7 Days of Signed Brief</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">MarkGrid · Wow! Momo Growth Intelligence Proposal · 2026 · Confidential</div>
+  <div class="footer-links">
+    <a href="https://markgrid.ai" target="_blank">markgrid.ai</a>
+    <a href="mailto:hello@markgrid.ai">hello@markgrid.ai</a>
+  </div>
+</footer>
+
+<script>
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ACTIVE NAV
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(section => navObserver.observe(section));
+</script>
+</body>
+</html>
+HTMLEOF
+echo "Done"
+Output
+Done
