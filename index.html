@@ -1,4 +1,3 @@
-cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -962,6 +961,402 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
     margin-top: 4px;
   }
 
+
+  /* COMMUNITY SIGNAL REPORT */
+  .signal-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+    margin-bottom: 48px;
+  }
+  .signal-kpi {
+    background: var(--cream);
+    padding: 32px 20px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .signal-kpi:hover { background: var(--cream-3); }
+  .signal-kpi-val {
+    font-family: var(--display);
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: var(--red);
+  }
+  .signal-kpi-val.good { color: #2A7A3B; }
+  .signal-kpi-val.neutral-val { color: var(--yellow); }
+  .signal-kpi-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    line-height: 1.4;
+  }
+  .sentiment-bar-wrap {
+    border: 1px solid var(--ink-dim);
+    background: var(--cream-2);
+    padding: 36px 44px;
+    margin-bottom: 40px;
+  }
+  .sentiment-bar-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+  }
+  .sentiment-bar {
+    display: flex;
+    height: 10px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .s-pos { background: #2A7A3B; }
+  .s-neu { background: var(--yellow); }
+  .s-neg { background: var(--red); }
+  .sentiment-legend {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .sentiment-leg-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+  .leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .leg-dot.pos { background: #2A7A3B; }
+  .leg-dot.neu { background: var(--yellow); }
+  .leg-dot.neg { background: var(--red); }
+  .topic-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--ink-dim);
+    margin-bottom: 40px;
+    background: var(--cream);
+  }
+  .topic-table th {
+    background: var(--cream-3);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--ink-dim);
+  }
+  .topic-table td {
+    padding: 14px 20px;
+    font-size: 14px;
+    color: var(--ink-muted);
+    border-bottom: 1px solid var(--ink-dim);
+    vertical-align: middle;
+  }
+  .topic-table tr:last-child td { border-bottom: none; }
+  .topic-table tr:hover td { background: var(--cream-2); }
+  .topic-name {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .mini-bar {
+    display: flex;
+    height: 7px;
+    border-radius: 2px;
+    overflow: hidden;
+    width: 110px;
+  }
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+    margin-bottom: 48px;
+  }
+  .platform-block {
+    background: var(--cream);
+    padding: 30px 28px;
+    transition: background 0.2s;
+  }
+  .platform-block:hover { background: var(--cream-3); }
+  .platform-name {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .platform-posts {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .convo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+    margin-bottom: 48px;
+  }
+  .convo-card {
+    background: var(--cream);
+    padding: 32px 34px;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .convo-card:hover { background: var(--cream-3); }
+  .convo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+  .convo-source {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .sentiment-chip {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .chip-neg { background: rgba(212,0,31,0.1); color: var(--red); }
+  .chip-pos { background: rgba(42,122,59,0.1); color: #2A7A3B; }
+  .chip-neu { background: rgba(201,139,0,0.1); color: var(--yellow); }
+  .convo-msg {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.65;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .convo-relevance {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+    margin-bottom: 48px;
+  }
+  .pain-card {
+    background: var(--cream);
+    padding: 32px 34px;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .pain-card:hover { background: var(--cream-3); }
+  .pain-card.high::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--red);
+  }
+  .pain-severity {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .pain-title {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .pain-meta {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+  .pain-example {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-style: italic;
+    line-height: 1.6;
+    border-left: 2px solid var(--ink-dim);
+    padding-left: 14px;
+    margin-top: 12px;
+  }
+  .reco-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--ink-dim);
+    background: var(--cream-2);
+  }
+  .reco-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 22px 32px;
+    border-bottom: 1px solid var(--ink-dim);
+    transition: background 0.2s;
+  }
+  .reco-item:last-child { border-bottom: none; }
+  .reco-item:hover { background: var(--cream-3); }
+  .reco-arrow { color: var(--red); font-weight: 700; font-size: 15px; flex-shrink: 0; padding-top: 2px; }
+  .reco-text { font-size: 15px; color: var(--ink-muted); line-height: 1.65; }
+  .report-timestamp {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 24px;
+    text-align: right;
+  }
+  .buying-intent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ink-dim);
+    border: 1px solid var(--ink-dim);
+    margin-bottom: 48px;
+  }
+  .buying-intent-block {
+    background: var(--cream);
+    padding: 36px 28px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .buying-intent-block:hover { background: var(--cream-3); }
+  .bi-val {
+    font-family: var(--display);
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: var(--red);
+  }
+  .bi-val.warn { color: var(--yellow); }
+  .bi-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* FILTER TABS */
+  .filter-tabs {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--ink-dim);
+    background: var(--ink-dim);
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .filter-tab {
+    padding: 11px 22px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    background: var(--cream);
+    border: none;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+    font-family: var(--body);
+  }
+  .filter-tab:hover { background: var(--cream-2); color: var(--ink); }
+  .filter-tab.active { background: var(--red); color: #fff; }
+
+  /* TOPIC CHART BARS */
+  .topic-bar-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--ink-dim); margin-bottom: 40px; }
+  .topic-bar-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 80px;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--ink-dim);
+    background: var(--cream);
+    transition: background 0.18s;
+  }
+  .topic-bar-row:last-child { border-bottom: none; }
+  .topic-bar-row:hover { background: var(--cream-2); }
+  .topic-bar-name {
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .topic-bar-track { display: flex; height: 8px; border-radius: 2px; overflow: hidden; width: 100%; }
+  .topic-bar-count { font-size: 13px; font-weight: 600; color: var(--ink-muted); text-align: right; }
+
+  /* SIGNAL PILLS */
+  .signal-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .signal-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--ink-dim);
+    background: var(--cream-2);
+    padding: 10px 18px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-weight: 500;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .signal-pill:hover { border-color: var(--red); background: var(--cream); }
+  .signal-pill .pill-val {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .signal-pill .pill-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .nav-links { display: none; }
@@ -982,10 +1377,20 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
     .terms-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; align-items: flex-start; }
     .audit-box { padding: 32px 24px; }
+
+    .signal-kpi-grid { grid-template-columns: repeat(3, 1fr); }
+    .platform-grid { grid-template-columns: 1fr 1fr; }
+    .convo-grid { grid-template-columns: 1fr; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .buying-intent-grid { grid-template-columns: 1fr; }
+    .topic-bar-row { grid-template-columns: 100px 1fr 50px; }
   }
 
   @media (max-width: 480px) {
     .stats-grid { grid-template-columns: 1fr; }
+    .signal-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .platform-grid { grid-template-columns: 1fr; }
+    .filter-tabs { gap: 0; }
   }
 </style>
 </head>
@@ -999,6 +1404,7 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
     <li><a href="#problems">Problems</a></li>
     <li><a href="#engine">Engine</a></li>
     <li><a href="#surfaces">Surfaces</a></li>
+    <li><a href="#community-report">Signals</a></li>
     <li><a href="#execution">Execution</a></li>
     <li><a href="#metrics">Metrics</a></li>
     <li><a href="#commercials">Engagement</a></li>
@@ -1014,10 +1420,11 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
   <a href="#problems" onclick="closeMobile()">02 · Problems</a>
   <a href="#engine" onclick="closeMobile()">03 · Engine</a>
   <a href="#surfaces" onclick="closeMobile()">04 · Surfaces</a>
-  <a href="#execution" onclick="closeMobile()">05 · Execution</a>
-  <a href="#metrics" onclick="closeMobile()">06 · Metrics</a>
-  <a href="#commercials" onclick="closeMobile()">07 · Engagement</a>
-  <a href="#contact" onclick="closeMobile()">08 · Contact</a>
+  <a href="#community-report" onclick="closeMobile()">05 · Signals</a>
+  <a href="#execution" onclick="closeMobile()">06 · Execution</a>
+  <a href="#metrics" onclick="closeMobile()">07 · Metrics</a>
+  <a href="#commercials" onclick="closeMobile()">08 · Engagement</a>
+  <a href="#contact" onclick="closeMobile()">09 · Contact</a>
 </div>
 
 <!-- HERO -->
@@ -1261,10 +1668,295 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
   </div>
 </section>
 
-<!-- SECTION 05: EXECUTION -->
+<!-- SECTION 05: COMMUNITY SIGNAL REPORT -->
+<section id="community-report">
+  <div class="container">
+    <div class="section-label reveal">05 · Community Signal Report</div>
+    <h2 class="section-heading reveal reveal-delay-1">
+      What India is saying<br>
+      <em>right now.</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2">Live intelligence pulled from Reddit, Twitter/X, Quora, and LinkedIn over the last 8 weeks — 53 qualified community conversations classified by sentiment, intent, and pain point. This is MarkGrid in action. Every week, automatically.</p>
+
+    <!-- KPI STRIP -->
+    <div class="signal-kpi-grid reveal reveal-delay-3">
+      <div class="signal-kpi">
+        <div class="signal-kpi-val">53</div>
+        <div class="signal-kpi-label">Qualified Signals Captured</div>
+      </div>
+      <div class="signal-kpi">
+        <div class="signal-kpi-val">72%</div>
+        <div class="signal-kpi-label">Brand Share of Conversation</div>
+      </div>
+      <div class="signal-kpi" style="border-top:2px solid var(--red);">
+        <div class="signal-kpi-val" style="color:var(--red);">45%</div>
+        <div class="signal-kpi-label">Negative Sentiment · Watch</div>
+      </div>
+      <div class="signal-kpi" style="border-top:2px solid #2A7A3B;">
+        <div class="signal-kpi-val" style="color:#2A7A3B;">13%</div>
+        <div class="signal-kpi-label">Positive Sentiment</div>
+      </div>
+      <div class="signal-kpi">
+        <div class="signal-kpi-val">4</div>
+        <div class="signal-kpi-label">Platforms Monitored</div>
+      </div>
+      <div class="signal-kpi" style="border-top:2px solid var(--red);">
+        <div class="signal-kpi-val" style="color:var(--red);">21</div>
+        <div class="signal-kpi-label">Complaint Mentions · Top Theme</div>
+      </div>
+    </div>
+
+    <!-- SENTIMENT SNAPSHOT -->
+    <div class="sentiment-bar-wrap reveal reveal-delay-2">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+        <div class="sentiment-bar-label">Overall Sentiment · Last 8 Weeks</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);">Best Channel:</span>
+          <span style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);">Twitter / X — 20 posts</span>
+        </div>
+      </div>
+      <div class="sentiment-bar" style="height:14px;border-radius:3px;">
+        <div class="s-pos" style="width:13%;"></div>
+        <div class="s-neu" style="width:42%;"></div>
+        <div class="s-neg" style="width:45%;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:10px;flex-wrap:wrap;gap:8px;">
+        <div style="font-size:12px;font-weight:600;color:#2A7A3B;">13% Positive · 7 posts</div>
+        <div style="font-size:12px;font-weight:600;color:var(--yellow);">42% Neutral · 22 posts</div>
+        <div style="font-size:12px;font-weight:700;color:var(--red);">45% Negative · 24 posts ⚠</div>
+      </div>
+    </div>
+
+    <!-- TOPIC BAR LIST -->
+    <div class="section-label reveal" style="margin-bottom:20px;">What People Are Talking About</div>
+    <div class="topic-bar-list reveal reveal-delay-1">
+      <div class="topic-bar-row">
+        <div class="topic-bar-name">Complaint</div>
+        <div class="topic-bar-track"><div class="s-neg" style="width:100%;"></div></div>
+        <div class="topic-bar-count" style="color:var(--red);font-weight:700;">21 posts</div>
+      </div>
+      <div class="topic-bar-row">
+        <div class="topic-bar-name">App</div>
+        <div class="topic-bar-track"><div class="s-neu" style="width:71%;"></div><div class="s-neg" style="width:29%;"></div></div>
+        <div class="topic-bar-count">7 posts</div>
+      </div>
+      <div class="topic-bar-row">
+        <div class="topic-bar-name">Recommendation</div>
+        <div class="topic-bar-track"><div class="s-pos" style="width:100%;"></div></div>
+        <div class="topic-bar-count" style="color:#2A7A3B;font-weight:700;">5 posts</div>
+      </div>
+      <div class="topic-bar-row">
+        <div class="topic-bar-name">Delivery</div>
+        <div class="topic-bar-track"><div class="s-neg" style="width:100%;"></div></div>
+        <div class="topic-bar-count" style="color:var(--red);font-weight:700;">5 posts</div>
+      </div>
+      <div class="topic-bar-row">
+        <div class="topic-bar-name">General</div>
+        <div class="topic-bar-track"><div class="s-pos" style="width:25%;"></div><div class="s-neu" style="width:75%;"></div></div>
+        <div class="topic-bar-count">4 posts</div>
+      </div>
+      <div class="topic-bar-row">
+        <div class="topic-bar-name">Food</div>
+        <div class="topic-bar-track"><div class="s-neu" style="width:50%;"></div><div class="s-neg" style="width:50%;"></div></div>
+        <div class="topic-bar-count">4 posts</div>
+      </div>
+      <div class="topic-bar-row">
+        <div class="topic-bar-name">Code / Referral</div>
+        <div class="topic-bar-track"><div class="s-neu" style="width:100%;"></div></div>
+        <div class="topic-bar-count">3 each</div>
+      </div>
+    </div>
+
+    <!-- PLATFORM BREAKDOWN -->
+    <div class="section-label reveal" style="margin-bottom:20px;">Platform Breakdown</div>
+    <div class="platform-grid reveal reveal-delay-1">
+      <div class="platform-block" style="border-top:2px solid var(--red);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <div class="platform-name">Twitter / X</div>
+          <span class="sentiment-chip chip-neg" style="font-size:9px;">Highest Risk</span>
+        </div>
+        <div class="platform-posts">20 Posts · Best Volume Channel</div>
+        <div class="sentiment-bar" style="width:100%;margin-bottom:10px;">
+          <div class="s-pos" style="width:0%"></div><div class="s-neu" style="width:25%"></div><div class="s-neg" style="width:75%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-muted);">
+          <span>0% Pos</span><span style="color:var(--yellow);">25% Neu</span><span style="color:var(--red);font-weight:700;">75% Neg</span>
+        </div>
+      </div>
+      <div class="platform-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <div class="platform-name">Reddit</div>
+          <span class="sentiment-chip chip-neu" style="font-size:9px;">Monitor</span>
+        </div>
+        <div class="platform-posts">17 Posts</div>
+        <div class="sentiment-bar" style="width:100%;margin-bottom:10px;">
+          <div class="s-pos" style="width:18%"></div><div class="s-neu" style="width:65%"></div><div class="s-neg" style="width:17%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-muted);">
+          <span style="color:#2A7A3B;">18% Pos</span><span style="color:var(--yellow);font-weight:700;">65% Neu</span><span>17% Neg</span>
+        </div>
+      </div>
+      <div class="platform-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <div class="platform-name">Quora</div>
+          <span class="sentiment-chip chip-neu" style="font-size:9px;">Mixed</span>
+        </div>
+        <div class="platform-posts">14 Posts</div>
+        <div class="sentiment-bar" style="width:100%;margin-bottom:10px;">
+          <div class="s-pos" style="width:29%"></div><div class="s-neu" style="width:36%"></div><div class="s-neg" style="width:35%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-muted);">
+          <span style="color:#2A7A3B;">29% Pos</span><span style="color:var(--yellow);">36% Neu</span><span style="color:var(--red);">35% Neg</span>
+        </div>
+      </div>
+      <div class="platform-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <div class="platform-name">LinkedIn</div>
+          <span class="sentiment-chip chip-neu" style="font-size:9px;">Low Volume</span>
+        </div>
+        <div class="platform-posts">2 Posts · Professional</div>
+        <div class="sentiment-bar" style="width:100%;margin-bottom:10px;">
+          <div class="s-pos" style="width:0%"></div><div class="s-neu" style="width:50%"></div><div class="s-neg" style="width:50%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-muted);">
+          <span>0% Pos</span><span style="color:var(--yellow);">50% Neu</span><span style="color:var(--red);">50% Neg</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUYING INTENT -->
+    <div class="section-label reveal" style="margin-bottom:20px;">Buying Intent Signals</div>
+    <div class="buying-intent-grid reveal reveal-delay-1">
+      <div class="buying-intent-block">
+        <div class="bi-val" style="color:var(--yellow);">5</div>
+        <div class="bi-label">Active Evaluators<br><span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:var(--ink-muted);">currently considering the brand</span></div>
+      </div>
+      <div class="buying-intent-block">
+        <div class="bi-val" style="color:var(--ink-muted);">0</div>
+        <div class="bi-label">Purchase-Ready Signals<br><span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:var(--ink-muted);">no confirmed buying intent this period</span></div>
+      </div>
+      <div class="buying-intent-block">
+        <div class="bi-val" style="color:var(--red);">2</div>
+        <div class="bi-label">Competitor Frustration<br><span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:var(--ink-muted);">switch-risk and dissatisfaction signals</span></div>
+      </div>
+    </div>
+
+    <!-- CONVERSATION EXAMPLES with filter tabs -->
+    <div class="section-label reveal" style="margin-bottom:16px;">Live Conversation Sample</div>
+    <div class="filter-tabs reveal reveal-delay-1" id="convoFilters">
+      <button class="filter-tab active" data-filter="all">All Posts</button>
+      <button class="filter-tab" data-filter="negative">Negative</button>
+      <button class="filter-tab" data-filter="positive">Positive</button>
+      <button class="filter-tab" data-filter="neutral">Neutral</button>
+    </div>
+    <div class="convo-grid" id="convoGrid">
+      <div class="convo-card" data-sentiment="negative">
+        <div class="convo-header">
+          <span class="convo-source">Twitter / X · @ravivermaravi</span>
+          <span class="sentiment-chip chip-neg">Negative · 95</span>
+        </div>
+        <p class="convo-msg">Ordered on wow app for delivery but it was turned into dine-in. Customer care told me to visit and eat. I wasted money — would recommend all not to order from the Wow Momo app.</p>
+        <div class="convo-relevance">Topic: App + Delivery · Platform: Twitter/X</div>
+      </div>
+      <div class="convo-card" data-sentiment="negative">
+        <div class="convo-header">
+          <span class="convo-source">Quora · Community Thread</span>
+          <span class="sentiment-chip chip-neg">Negative · 90</span>
+        </div>
+        <p class="convo-msg">Well, some liked it and some found that the food was not worth it. I belong to the second category. I once tried this place, but I didn't find it worth spending my money. I'd prefer Nainital momos instead.</p>
+        <div class="convo-relevance">Topic: Complaint · Platform: Quora</div>
+      </div>
+      <div class="convo-card" data-sentiment="positive">
+        <div class="convo-header">
+          <span class="convo-source">Quora · Community Thread</span>
+          <span class="sentiment-chip chip-pos">Positive · 90</span>
+        </div>
+        <p class="convo-msg">Don't know about others, but I love momos 😋😋😋</p>
+        <div class="convo-relevance">Topic: Recommendation · Platform: Quora</div>
+      </div>
+      <div class="convo-card" data-sentiment="negative">
+        <div class="convo-header">
+          <span class="convo-source">Twitter / X · @viprabuddhi</span>
+          <span class="sentiment-chip chip-neg">Negative · 90</span>
+        </div>
+        <p class="convo-msg">Instead of 10 rupees muri, I now have to eat 200 rupees Wow Momo. Pricing sensitivity surfacing — competitor frustration signal.</p>
+        <div class="convo-relevance">Topic: Complaint · Signal: Competitor Frustration</div>
+      </div>
+      <div class="convo-card" data-sentiment="neutral">
+        <div class="convo-header">
+          <span class="convo-source">Twitter / X · @TOIKolkata</span>
+          <span class="sentiment-chip chip-neu">Neutral · 70</span>
+        </div>
+        <p class="convo-msg">Wow! Momo co-founder Muralikrishnan recently interacted with students of Calcutta Public School under The Times of India's #LeadersonCampus initiative.</p>
+        <div class="convo-relevance">Topic: General Discussion · Brand visibility opportunity</div>
+      </div>
+      <div class="convo-card" data-sentiment="positive">
+        <div class="convo-header">
+          <span class="convo-source">Reddit · r/food</span>
+          <span class="sentiment-chip chip-pos">Positive · 90</span>
+        </div>
+        <p class="convo-msg">Wow Momo app deal — 6 pieces of chicken momo + 2 chicken burgers + 1 Pepsi for ₹153 including delivery. That's genuinely a steal.</p>
+        <div class="convo-relevance">Topic: Recommendation + Wow Eats App</div>
+      </div>
+    </div>
+
+    <!-- PAIN POINTS -->
+    <div class="section-label reveal" style="margin-bottom:20px;">Pain Point Registry</div>
+    <div class="pain-grid reveal reveal-delay-1">
+      <div class="pain-card high">
+        <div class="pain-severity">⚠ High Priority · Trend Increasing</div>
+        <div class="pain-title">Kolkata Cluster</div>
+        <div class="pain-meta">2 mentions · 100% negative · Action: Community response guide</div>
+        <div class="pain-example">Political and civic conversations linking the brand to public-safety incidents are surfacing in the Kolkata geo-cluster. Needs a pre-emptive response asset before it escalates.</div>
+      </div>
+      <div class="pain-card high">
+        <div class="pain-severity">⚠ High Priority · Trend Increasing</div>
+        <div class="pain-title">Worst Experience</div>
+        <div class="pain-meta">1 mention · 100% negative · Zomato delivery + no resolution</div>
+        <div class="pain-example">Ordered 3 dishes on Zomato, estimated 20-minute delivery. Order progressively delayed with no resolution reached through customer support channels.</div>
+      </div>
+      <div class="pain-card high">
+        <div class="pain-severity">⚠ High Priority · Trend Increasing</div>
+        <div class="pain-title">App Order Confusion</div>
+        <div class="pain-meta">1 mention · 100% negative · Delivery → Dine-in switch error</div>
+        <div class="pain-example">Ordered via Wow Momo app for delivery, but support logged it as dine-in. No in-app resolution path available for the customer.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-severity">Low Priority · Increasing Trend</div>
+        <div class="pain-title">Restaurant Discovery Gap</div>
+        <div class="pain-meta">1 mention · 0% negative · SEO + footfall visibility</div>
+        <div class="pain-example">More views, more clicks, more visitors — but tables still half empty at dinner. Discovery-to-footfall conversion gap noted in community conversations.</div>
+      </div>
+    </div>
+
+    <!-- RECOMMENDATIONS -->
+    <div class="section-label reveal" style="margin-bottom:16px;">MarkGrid Recommendations</div>
+    <ul class="reco-list reveal reveal-delay-1">
+      <li class="reco-item">
+        <span class="reco-arrow">→</span>
+        <span class="reco-text"><strong style="color:var(--ink);">Kolkata cluster:</strong> Address the leading community pain point with a client-safe response asset and supporting proof points — 100% negative sentiment and a trend that is increasing.</span>
+      </li>
+      <li class="reco-item">
+        <span class="reco-arrow">→</span>
+        <span class="reco-text"><strong style="color:var(--ink);">Sentiment elevation:</strong> Negative community sentiment is elevated at 45% — prioritise response coverage and customer proof in outbound materials and creator briefs this cycle.</span>
+      </li>
+      <li class="reco-item">
+        <span class="reco-arrow">→</span>
+        <span class="reco-text"><strong style="color:var(--ink);">Complaint volume:</strong> Develop a proactive communication strategy around the complaint cluster — 21 negative mentions make it the single largest topic in this 8-week window.</span>
+      </li>
+      <li class="reco-item">
+        <span class="reco-arrow">→</span>
+        <span class="reco-text"><strong style="color:var(--ink);">App + delivery:</strong> Investigate and resolve app-to-delivery handoff errors — significant and growing drivers of negative sentiment on Twitter/X, the highest-volume platform in the report.</span>
+      </li>
+    </ul>
+    <div class="report-timestamp">Wow Momo · Last 8 weeks · Generated 2026-05-27 · MarkGrid Confidential · Competitor in conversation: Burger Singh (1 mention)</div>
+  </div>
+</section>
+
+<!-- SECTION 06: EXECUTION -->
 <section id="execution">
   <div class="container">
-    <div class="section-label reveal">05 · Execution</div>
+    <div class="section-label reveal">06 · Execution</div>
     <h2 class="section-heading reveal reveal-delay-1">
       A 6-month program to<br>
       <em>seed, shape, and amplify.</em>
@@ -1294,10 +1986,10 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
   </div>
 </section>
 
-<!-- SECTION 06: METRICS -->
+<!-- SECTION 07: METRICS -->
 <section id="metrics">
   <div class="container">
-    <div class="section-label reveal">06 · Measurement</div>
+    <div class="section-label reveal">07 · Measurement</div>
     <h2 class="section-heading reveal reveal-delay-1">
       Trackable.<br>
       <em>Attributable.</em>
@@ -1325,10 +2017,10 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
   </div>
 </section>
 
-<!-- SECTION 07: ENGAGEMENT TERMS (no pricing) -->
+<!-- SECTION 08: ENGAGEMENT TERMS (no pricing) -->
 <section id="commercials">
   <div class="container">
-    <div class="section-label reveal">07 · Engagement Terms</div>
+    <div class="section-label reveal">08 · Engagement Terms</div>
     <h2 class="section-heading reveal reveal-delay-1">
       Everything in.<br>
       <em>Nothing hidden.</em>
@@ -1409,10 +2101,11 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
   </div>
 </section>
 
-<!-- SECTION 08: CONTACT -->
+
+<!-- SECTION 09: CONTACT -->
 <section id="contact">
   <div class="container">
-    <div class="section-label reveal">08 · Direct Line</div>
+    <div class="section-label reveal">09 · Direct Line</div>
     <div class="contact-grid">
       <div>
         <div class="closing-headline reveal">
@@ -1475,6 +2168,24 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
 </footer>
 
 <script>
+  // CONVO FILTER TABS
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const convoCards = document.querySelectorAll('#convoGrid .convo-card');
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      convoCards.forEach(card => {
+        if (filter === 'all' || card.dataset.sentiment === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
   // HAMBURGER
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -1513,7 +2224,3 @@ cat > /mnt/user-data/outputs/markgrid-wowmomo-light.html << 'HTMLEOF'
 </script>
 </body>
 </html>
-HTMLEOF
-echo "Done"
-Output
-Done
